@@ -50,10 +50,10 @@ public class MenuManager : MonoBehaviour
         playerMovement = GameObject.FindObjectOfType<PlayerMovement>();
         canvasAnim = canvas.GetComponent<Animator>();
 
-        StartofGame();
+        StartofGameScene();
     }
 
-    public void StartofGame()
+    public void StartofGameScene()
     {
         //main buttons
         playButton.gameObject.SetActive(true);
@@ -83,13 +83,6 @@ public class MenuManager : MonoBehaviour
 
 
         //main buttons
-        /*
-        playButton.gameObject.SetActive(true);
-        settingsButton.gameObject.SetActive(true);
-        helpButton.gameObject.SetActive(true);
-        creditsButton.gameObject.SetActive(true);
-        quitButton.gameObject.SetActive(true);
-        */
         canvasAnim.Play("StartMainButtons");
 
         //back button
@@ -118,15 +111,6 @@ public class MenuManager : MonoBehaviour
         cameraScript.SwitchToHelpCam();
         FindObjectOfType<AudioManager>().Play("ButtonClick");
 
-        //main buttons
-        /*
-        playButton.gameObject.SetActive(false);
-        settingsButton.gameObject.SetActive(false);
-        helpButton.gameObject.SetActive(false);
-        creditsButton.gameObject.SetActive(false);
-        quitButton.gameObject.SetActive(false);
-        */
-
         canvasAnim.Play("EndMainButtons");
 
         StartCoroutine(HelpPanel());
@@ -137,19 +121,8 @@ public class MenuManager : MonoBehaviour
         cameraScript.SwitchToSettingsCam();
         FindObjectOfType<AudioManager>().Play("ButtonClick");
 
-        //main buttons
-        /*
-        playButton.gameObject.SetActive(false);
-        settingsButton.gameObject.SetActive(false);
-        helpButton.gameObject.SetActive(false);
-        creditsButton.gameObject.SetActive(false);
-        quitButton.gameObject.SetActive(false);
-        */
-
         canvasAnim.Play("EndMainButtons");
        
-
-
         //images & groups
         StartCoroutine(EnableSettingsGroup());
     
@@ -161,15 +134,7 @@ public class MenuManager : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("ButtonClick");
         backButtonHelp.gameObject.SetActive(false);
         backButtonSettings.gameObject.SetActive(false);
-        //main buttons
-        /*
-        playButton.gameObject.SetActive(false);
-        settingsButton.gameObject.SetActive(false);
-        helpButton.gameObject.SetActive(false);
-        creditsButton.gameObject.SetActive(false);
-        quitButton.gameObject.SetActive(false);
-        */
-
+       
         canvasAnim.Play("EndMainButtons");
 
         //back button
@@ -179,45 +144,10 @@ public class MenuManager : MonoBehaviour
         {
             creditsSlider.gameObject.SetActive(true);
         }
-        
     }
 
     public void OnClickHelpPanel()
-    {
-        /*
-        switch(helpCounter)
-        {
-            case 1:
-                platTV1.SetActive(true);
-                platTV2.SetActive(false);
-                arpgTV1.SetActive(false);
-                arpgTV2.SetActive(false);
-                helpCounter++;
-                break;
-            case 2:
-                platTV1.SetActive(false);
-                platTV2.SetActive(true);
-                arpgTV1.SetActive(false);
-                arpgTV2.SetActive(false);
-                helpCounter++;
-                break;
-            case 3:
-                platTV1.SetActive(false);
-                platTV2.SetActive(false);
-                arpgTV1.SetActive(true);
-                arpgTV2.SetActive(false);
-                helpCounter++;
-                break;
-            case 4:
-                platTV1.SetActive(false);
-                platTV2.SetActive(false);
-                arpgTV1.SetActive(false);
-                arpgTV2.SetActive(true);
-                helpCounter = 1;
-                break;
-        }
-        */
-        
+    { 
         if(platTV.activeSelf == true)
         {
             platTV.SetActive(false);
@@ -227,8 +157,7 @@ public class MenuManager : MonoBehaviour
         {
             platTV.SetActive(true);
             arpgTV.SetActive(false);
-        }
-        
+        } 
     }
 
     IEnumerator EnableSettingsGroup()
@@ -238,19 +167,12 @@ public class MenuManager : MonoBehaviour
         yield return new WaitForSeconds(.5f);
       //  canvasAnim.Play("SettingsAnimation");
        
-       
-      
         while (settingsGroupAlpha.alpha < 1)
         {
             settingsGroupAlpha.alpha += .7f * Time.deltaTime; ;
             yield return null;
         }
         yield return null;
-
-      
-       
-
-
     }
 
     IEnumerator HelpPanel()
@@ -265,7 +187,6 @@ public class MenuManager : MonoBehaviour
             yield return null;
         }
         yield return null;
-
     }
 
     void Update()
@@ -276,6 +197,4 @@ public class MenuManager : MonoBehaviour
 
         }
     }
-
-
 }
